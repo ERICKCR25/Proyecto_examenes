@@ -79,6 +79,17 @@
 								  <input type="text" class="form-control" id="numeroPregunta" name="nPregunta"  >
 								</div>
 							</div>
+							
+							<div class="form-group  col-md-12" >
+								<div class="col-md-12">
+									<div class="text-center col md-6">
+									  <select  class="form-control " id="id_TipoPregunta" name="tipoPregunta.idTipoPregunta">
+									  	<option>Seleccione tipo de Pregunta</option>
+									  </select>
+									</div>
+							</div>
+							</div>
+							
 							<div class="col-md-12">
 									<div class="text-center">
 									<button type="button" id="id_btnAgregar" class="btn btn-primary">AGREGA PREGUNTA</button>
@@ -278,7 +289,22 @@
 
 	
 
+	
+	
+
 </script >	
+
+<script type="text/javascript">
+$(document).ready(function() {	
+	$.getJSON("cargaTipoPregunta",{}, function (data){
+		$.each(data, function(index, item){
+			$('#id_TipoPregunta').append("<option value='" + item.idTipoPregunta + "'>" + item.nombre + "</option>" );     
+			                   
+		});
+	});
+	
+});	
+</script>
 
 <script type="text/javascript">
 function muestraBotones(id) {

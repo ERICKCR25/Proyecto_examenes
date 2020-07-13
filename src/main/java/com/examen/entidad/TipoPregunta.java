@@ -28,5 +28,31 @@ public class TipoPregunta {
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoPregunta")
 	private List<Pregunta> preguntas;
+
+	public int getIdTipoPregunta() {
+		return idTipoPregunta;
+	}
+
+	public void setIdTipoPregunta(int idTipoPregunta) {
+		this.idTipoPregunta = idTipoPregunta;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public List<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+
+	public void setPreguntas(List<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+	
+	
 	
 }

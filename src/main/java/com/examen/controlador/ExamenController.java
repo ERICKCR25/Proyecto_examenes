@@ -27,6 +27,9 @@ public class ExamenController {
 	private MateriaServicio materiaservicio;
 	@Autowired
 	private PreguntaServicio preguntaServicio;
+	
+	@Autowired
+	private TipoPreguntaServicio tipoPreguntaServicio;
 	//@Autowired
 	//private RespuestaServicio respuestaServicio;
 	
@@ -43,6 +46,12 @@ public class ExamenController {
 	@RequestMapping("/cargaMateria")
 	public List<Materia> cargaMateria() {		
 		return materiaservicio.listaMateria();
+	}
+	
+	@ResponseBody
+	@RequestMapping("/cargaTipoPregunta")
+	public List<TipoPregunta> cargaTipoPregunta() {		
+		return tipoPreguntaServicio.listaTodo();
 	}
 //	
 //	@ResponseBody

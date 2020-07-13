@@ -200,8 +200,8 @@
 												<label class="col-lg-3 control-label"
 													for="id_act_estado">Estado</label>
 												<div class="col-lg-5">
-													<input class="form-control" id="id_reg_estado"
-														name="estado" placeholder="Ingrese estado"
+													<input class="form-control hidden" id="id_reg_estado"
+														name="estado" value="Activo"
 														type="text" maxlength="6" />
 												</div>
 											</div>
