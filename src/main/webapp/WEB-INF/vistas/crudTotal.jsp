@@ -18,7 +18,10 @@
 <title>Agrega Preguntas a examen</title>
 </head>
 <body>
+<!--<jsp:include page="intranetCabecera.jsp" />-->
 <div class="container">
+<br>&nbsp;<br>
+<br>&nbsp;<br>
 	<div class="page-header ">
 		<div class="text-center">
   			<h1>${Examen} </h1>
