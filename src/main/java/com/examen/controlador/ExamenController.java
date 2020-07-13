@@ -69,7 +69,7 @@ public class ExamenController {
 			}
 		}
 		m.addAttribute("preguntas",preg);
-		//m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
+		m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
 		return "crudTotal";
 	}
 //	

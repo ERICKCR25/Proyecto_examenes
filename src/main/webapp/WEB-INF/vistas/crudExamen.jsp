@@ -59,7 +59,8 @@
 												<th>Punt Aprob</th>
 												<th>Porc Aprob</th>
 												<th>Valor Total</th>
-												<th>Actualiza</th>
+												<th>Duracion</th>
+												<th>Actualiza</th>												
 												<th>Elimina</th>
 												<th>Agrega preg</th>
 											</tr>
@@ -75,6 +76,7 @@
 														<td>${x.valorAprobatorio}</td>
 														<td>${x.porAprobacion}</td>
 														<td>${x.valorTotal}</td>
+														<td>${x.duracion}</td>														
 														<td>
 															<button type='button' data-toggle='modal' onclick="editar('${x.idexamen}','${x.nombre}','${x.descripcion}','${x.claves}','${x.numPreguntas}','${x.valorAprobatorio}','${x.porAprobacion}','${x.valorTotal}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
 																<img src='images/edit.gif' width='auto' height='auto' />
@@ -186,6 +188,25 @@
 												</div>
 											</div>
 											<div class="form-group">
+												<label class="col-lg-3 control-label"
+													for="id_act_duracion">Duracion</label>
+												<div class="col-lg-5">
+													<input class="form-control" id="id_reg_duracion"
+														name="duracion" placeholder="Ingrese duracion"
+														type="text" maxlength="6" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-lg-3 control-label"
+													for="id_act_estado">Estado</label>
+												<div class="col-lg-5">
+													<input class="form-control" id="id_reg_estado"
+														name="estado" placeholder="Ingrese estado"
+														type="text" maxlength="6" />
+												</div>
+											</div>
+											
+											<div class="form-group">
 												<div class="col-lg-9 col-lg-offset-3">
 													<button type="submit" class="btn btn-primary">REGISTRA</button>
 												</div>
@@ -294,6 +315,25 @@
 														type="text" maxlength="6" />
 												</div>
 											</div>
+											<div class="form-group">
+												<label class="col-lg-3 control-label"
+													for="id_act_duracion">Duracion</label>
+												<div class="col-lg-5">
+													<input class="form-control" id="id_act_duracion"
+														name="duracion" placeholder="Ingrese duracion"
+														type="text" maxlength="6" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-lg-3 control-label"
+													for="id_act_estado">Estado</label>
+												<div class="col-lg-5">
+													<input class="form-control" id="id_act_estado"
+														name="estado" placeholder="Ingrese estado"
+														type="text" maxlength="6" />
+												</div>
+											</div>
+											
 
 											<div class="form-group">
 												<div class="col-lg-9 col-lg-offset-3">

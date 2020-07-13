@@ -8,4 +8,6 @@ public interface PreguntaServicio {
 
 	
 	public abstract List<Pregunta> listaPorExamen(int idExamen);
+	
+	public abstract int cantidadPreguntasPorExamen(int idExamen);
 }

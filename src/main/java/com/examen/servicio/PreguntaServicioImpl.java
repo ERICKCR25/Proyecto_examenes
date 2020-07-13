@@ -22,4 +22,16 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 		return preguntaRepositorio.listaPreguntasPorExamen(idExamen);
 	}
 
+
+	@Override
+	public int cantidadPreguntasPorExamen(int idExamen) {
+		int cantidad=0;
+		List<Pregunta> lista=preguntaRepositorio.listaPreguntasPorExamen(idExamen);
+		for(Pregunta p: lista) {
+			cantidad++;
+		}
+		
+		return cantidad;
+	}
+
 }
