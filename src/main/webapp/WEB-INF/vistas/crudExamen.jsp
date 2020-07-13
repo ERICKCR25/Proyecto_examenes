@@ -78,7 +78,7 @@
 														<td>${x.valorTotal}</td>
 														<td>${x.duracion}</td>														
 														<td>
-															<button type='button' data-toggle='modal' onclick="editar('${x.idexamen}','${x.nombre}','${x.descripcion}','${x.claves}','${x.numPreguntas}','${x.valorAprobatorio}','${x.porAprobacion}','${x.valorTotal}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
+															<button type='button' data-toggle='modal' onclick="editar('${x.idexamen}','${x.nombre}','${x.descripcion}','${x.claves}','${x.numPreguntas}','${x.valorAprobatorio}','${x.porAprobacion}','${x.valorTotal}','${x.duracion}','${x.estado}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
 																<img src='images/edit.gif' width='auto' height='auto' />
 															</button>
 														</td>
@@ -371,11 +371,19 @@
 			$('#idModalRegistra').modal("show");
 		}
 
-		function editar(idexamen, nombre, descripcion, valorAprobatorio) {
-			$('input[id=id_act_idexamen]').val(idexamen);
+		function editar(idexamen, nombre, descripcion,claves, numPreguntas,
+				valorAprobatorio, porAprobacion, valorTotal, duracion,
+				estado) {
+			$('input[id=id_ID]').val(idexamen);
 			$('input[id=id_act_nombre]').val(nombre);
-			$('input[id=id_act_descripcion]').val(descripcion);			
+			$('input[id=id_act_descripcion]').val(descripcion);
+			$('input[id=id_act_claves]').val(claves);
+			$('input[id=id_act_numPreguntas]').val(numPreguntas);
 			$('input[id=id_act_valorAprobatorio]').val(valorAprobatorio);
+			$('input[id=id_act_porAprobacion]').val(porAprobacion);
+			$('input[id=id_act_valorTotal]').val(valorTotal);
+			$('input[id=id_act_duracion]').val(duracion);
+			$('input[id=id_act_estado]').val(estado);
 			$('#idModalActualiza').modal("show");
 		}
 		</script>
