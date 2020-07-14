@@ -94,8 +94,8 @@
 								</div>
 							</div>
 							<div class=" hidden">
-								  			<input type="text" class="form-control" id="id_ex" name="id_ex" value="${idExamen}" >
-								  		</div>
+								  	<input type="text" class="form-control" id="id_ex" name="id_ex" value="${idExamen}" >
+							</div>
 							
 						</form>	
 						
