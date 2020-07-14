@@ -14,4 +14,7 @@ public interface PreguntaServicio {
 	public abstract Pregunta agregaPregunta(Pregunta obj);
 	
 	public abstract void agregaPreguntaEnExamen(Pregunta obj,int idExamen);
+	
+	public abstract void eliminaPregunta(int id);
 }
+

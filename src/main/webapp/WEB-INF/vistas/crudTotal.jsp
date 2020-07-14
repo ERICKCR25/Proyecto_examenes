@@ -63,7 +63,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Agregue Pregunta</div>
 						<div class="panel-body">
-						<form id="idFormElimina" action="agregaPreguntasEnEx"  method="post">
+						<form id="idFormAgrega" action="agregaPreguntasEnEx"  method="post">
 							<div class="form-group  col-md-12 text-center"  >
 									<div id="numPreg" class="col-md-12 ">
 										<div class=" hidden">
@@ -87,7 +87,7 @@
 									  </select>
 									</div>
 									<div class="col-md-6">
-									  <select  class="form-control " id="id_TipoPregunta" name="tipoPregunta.idTipoPregunta">
+									  <select  class="form-control " id="id_TipoPregunta" name="tipoPregunta.idTipoPregunta" onChange="muestraTipo()">
 									  	<option>Seleccione tipo de Pregunta</option>
 									  </select>
 									</div>
@@ -96,13 +96,75 @@
 							<div class=" hidden">
 								  			<input type="text" class="form-control" id="id_ex" name="id_ex" value="${idExamen}" >
 								  		</div>
+							
+						</form>	
+						
+						<div id="tipoNormal" class="container hidden">
+							<br>
+							<form>
+								<div class="form-row align-items-center">
+									<div class="col-md-12">					
+				  						<textarea class="form-control" id="respuestaNormal"placeholder="Ingresa Respuesta"></textarea>
+									</div>					
+								</div>
+							</form>
+							<br>
+						</div>
+				
+							<div id="tipoVoF" class="container hidden">
+								<br>
+								<form id="formularioDeRespuestas">
+								<div class="form-row align-items-center">
+									<div class="col-md-12 ">
+										<div class="custom-control custom-radio mr-sm-2">
+												<input class="form-check-input" type="radio" name="radioPregunta" id="radioPregunta">
+												<label class="form-check-label" for="gridRadios1">
+					           					 Verdadero
+					          					</label>
+										</div>
+										<div class="form-control custom-radio mr-sm-2">
+												<input class="form-check-input" type="radio" name="radioPregunta" id="radioPregunta" >
+												<label class="form-check-label" for="gridRadios1">
+					           					 Falso
+					          					</label>
+										</div>
+									</div>							
+								</div>
+								</form>
+								<br>
+							</div>
+						</div>
+						<div id="tipoSeleccionMultiple" class="container hidden">
+							<br>
+							<form id="formularioDeRespuestasMultiples">			
+								<div class="form-row items-center " id="listaRespuestas">
+									<ol id="listaordenada" class="col-md-12">
+									<li><div class="col-md-12" id="divPregunta">
+										<div class="input-group ">
+											<div class="form-control custom-radio my-auto">
+												<input class="form-check-input" type="radio" name="radioPregunta" id="nuevo_li">
+											</div>
+												<input type="text" class="form-control" id="inlineFormInputName"placeholder="Ingrese Respuesta">
+											<div class="col-xs-2  ml-2 text-right ">
+												<button type="button" class="btn btn-primary" onclick="return add_li()" value="añadir li"><i class="fas fa-plus-circle"></i></button>
+												<button type="button" class="btn btn-primary"><i class="fas fa-minus-circle"></i></button>
+											</div>
+										</div>
+										</div><br></li>
+										
+									</ol>
+									
+									
+									
+								</div>
+							</form>
+							<br>
 							<div class="col-md-12">
 									<div class="text-center">
-									<button type="submit" id="id_btnAgregar"  class="btn btn-primary">AGREGA PREGUNTA</button>
+										<button type="button" id="id_btnAgregar"  class="btn btn-primary" onclick="agregaPregunta();">AGREGA PREGUNTA</button>
 									</div>
 							</div>
-						</form>	
-				</div>
+		</div>
 			</div>
 			<div class="panel panel-default">
 					<div class="panel-heading">Detalle De Examen</div>
@@ -292,12 +354,6 @@
 		});
 		
 	});	
-
-	
-
-	
-	
-
 </script >	
 
 <script type="text/javascript">
@@ -335,6 +391,33 @@ function eliminarPregunta(id) {
 	$('#idFormElimina').submit();
 }
 
+function agregaPregunta(id) {	
+	$('#idFormAgrega').submit();
+}
+
+
+
+
+function muestraTipo() {
+	var sel = parseInt(document.getElementById('id_TipoPregunta').value);
+	switch (sel) {
+	case 1:
+		$("#tipoVoF").removeClass("hidden");
+		$("#tipoSeleccionMultiple").addClass("hidden");
+
+		break;
+	case 2:
+		$("#tipoVoF").addClass("hidden");		
+		$("#tipoSeleccionMultiple").removeClass("hidden");
+		break;
+	
+	default:	
+		
+		$("#tipoVoF").addClass("hidden");
+		$("#tipoSeleccionMultiple").addClass("hidden");
+	}
+}
+
 </script>
 
 <script type="text/javascript">
@@ -345,6 +428,74 @@ function eliminarPregunta(id) {
 		
 	});	
 </script >
+
+<script>
+		function add_li() {
+
+			var nuevoLi = document.getElementById("nuevo_li").value;
+
+			if (nuevoLi.length > 0) {
+
+				if (find_li(nuevoLi)) {
+
+					var li = document.createElement('li');
+
+					li.id = nuevoLi;
+
+					li.innerHTML = "<div class='col-md-12'><div class='input-group'><div class='custom-control custom-radio my-auto'><input class='form-check-input' type='radio' name='radioPregunta' id='radioPregunta'></div><input type='text' class='form-control' id='inlineFormInputName'placeholder='Ingrese Respuesta'><div class='col-xs-4  ml-2 text-right'><button type='button' class='btn btn-primary' onclick='return add_li()' value='añadir li'><i class='fas fa-plus-circle'></i></button>&nbsp;<button type='button' class='btn btn-primary' onclick='eliminar(this)'><i class='fas fa-minus-circle'></i></button></div></div></div><br>";
+
+					
+					document.getElementById("listaordenada").appendChild(li);
+
+				}
+
+			}
+
+			return false;
+
+		}
+
+		/**
+
+		 * Funcion que busca si existe ya el <li> dentrol del <ul>
+
+		 * Devuelve true si no existe.
+
+		 */
+
+		function find_li(contenido) {
+
+			var el = document.getElementById("listaordenada").getElementsByTagName("li");
+
+			for (var i = 0; i < el.length; i++) {
+
+				if (el[i].innerHTML == contenido)
+
+					return false;
+			}
+
+			return true;
+
+		}
+
+		/**
+
+		 * Funcion para eliminar los elementos
+
+		 * Tiene que recibir el elemento pulsado
+
+		 */
+
+		function eliminar(elemento) {
+
+			var id = elemento.parentNode.getAttribute("id");
+
+			node = document.getElementById(id);
+
+			node.parentNode.removeChild(node);
+
+		}
+	</script>
 	
 	
 	

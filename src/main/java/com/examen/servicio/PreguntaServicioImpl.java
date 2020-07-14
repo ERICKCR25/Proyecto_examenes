@@ -46,4 +46,11 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 		preguntaRepositorio.registraEnExamen(obj, idExamen);
 	}
 
+
+	@Override
+	public void eliminaPregunta(int id) {
+		preguntaRepositorio.deleteById(id);
+		
+	}
+
 }
