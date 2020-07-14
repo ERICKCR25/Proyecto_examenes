@@ -15,10 +15,12 @@
 <title>Crea Examen</title>
 </head>
 <body>
-
+<jsp:include page="intranetCabecera.jsp" />
 	<div class="container-fluid">
 
 		<div class="container">
+		<br>&nbsp;<br>
+<br>&nbsp;<br>
  <h1>Crud de Examen</h1>
 		 <div class="col-md-23" >  
 			  <form id="idFormElimina" action="eliminaExamen">

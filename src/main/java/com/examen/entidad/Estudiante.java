@@ -57,8 +57,6 @@ public class Estudiante {
 	@JoinColumn(name = "idusuario")
 	@ManyToOne
 	private Usuario usuario;
-	
-	
 
 	public int getIdEstudiante() {
 		return idEstudiante;
@@ -99,8 +97,6 @@ public class Estudiante {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-
-	
 
 	public Date getFechNac() {
 		return fechNac;
@@ -149,6 +145,7 @@ public class Estudiante {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
 	
 
 

@@ -18,7 +18,7 @@
 <title>Agrega Preguntas a examen</title>
 </head>
 <body>
-<!--<jsp:include page="intranetCabecera.jsp" />-->
+<jsp:include page="intranetCabecera.jsp" />
 <div class="container">
 <br>&nbsp;<br>
 <br>&nbsp;<br>
@@ -59,46 +59,49 @@
 					</div>
 				</div>
 				
+				
 				<div class="panel panel-default">
 					<div class="panel-heading">Agregue Pregunta</div>
 						<div class="panel-body">
+						<form id="idFormElimina" action="agregaPreguntasEnEx"  method="post">
 							<div class="form-group  col-md-12 text-center"  >
-									<div id="numPreg" class="col-md-6 ">
+									<div id="numPreg" class="col-md-12 ">
+										<div class=" hidden">
+								  			<input type="text" class="form-control" id="numeroPregunta" name="nPregunta"  >
+								  		</div>
+									</div>
+									<div class="form-group  col-md-12" >
+										<div class="col-md-12 ">
+										  <textarea type="text" class="form-control" name="enunciado" id="enunciado"  placeholder="Ingrese enunciado de pregunta" ></textarea>
+										</div>
 										
 									</div>
-								
+							</div>
+							
+							
+							<div class="form-group  col-md-12 text-center" >
+								<div class="text-center">
 									<div class="col-md-6 ">
 									  <select  class="form-control " id="id_Materia" name="materia.idMateria">
 									  	<option>Seleccione Materia</option>
 									  </select>
 									</div>
-								
-							</div>
-							<div class="form-group  col-md-12" >
-								<div class="col-md-12 ">
-								  <textarea type="text" class="form-control" name="enunciado" placeholder="Ingrese enunciado de pregunta" ></textarea>
-								</div>
-								<div class=" hidden">
-								  <input type="text" class="form-control" id="numeroPregunta" name="nPregunta"  >
-								</div>
-							</div>
-							
-							<div class="form-group  col-md-12" >
-								<div class="col-md-12">
-									<div class="text-center col md-6">
+									<div class="col-md-6">
 									  <select  class="form-control " id="id_TipoPregunta" name="tipoPregunta.idTipoPregunta">
 									  	<option>Seleccione tipo de Pregunta</option>
 									  </select>
 									</div>
+								</div>
 							</div>
-							</div>
-							
+							<div class=" hidden">
+								  			<input type="text" class="form-control" id="id_ex" name="id_ex" value="${idExamen}" >
+								  		</div>
 							<div class="col-md-12">
 									<div class="text-center">
-									<button type="button" id="id_btnAgregar" class="btn btn-primary">AGREGA PREGUNTA</button>
+									<button type="submit" id="id_btnAgregar"  class="btn btn-primary">AGREGA PREGUNTA</button>
 									</div>
 							</div>
-							
+						</form>	
 				</div>
 			</div>
 			<div class="panel panel-default">
@@ -109,12 +112,12 @@
 							  <a href="#" class="list-group-item" onmouseenter="muestraBotones('${x.nPregunta}');" onmouseleave="ocultaBotones('${x.nPregunta}');">
 							  <div class="row">
 							  <div class="col-lg-6 col-md-6 col-sm-3">
-							  <strong >${x.nPregunta}</strong>
+							  <strong >Pregunta ${x.nPregunta}</strong>
 							  <h5>${x.enunciado}</h5>
 							  </div>
 							  
 							 <div class="col-lg-6 col-md-auto col-sm-auto">
-							  	<div class="text-right " id="${x.nPregunta}">
+							  	<div class="text-right hidden" id="${x.nPregunta}">
 								  	<button type="button" class="btn btn-success" onclick="editarPregunta('${x.idPregunta}','${x.nPregunta}','${x.enunciado}','${x.materia.idMateria}');">
 										<img src='images/edit.gif' width='auto' height='auto' />
 									</button>
@@ -337,7 +340,7 @@ function eliminarPregunta(id) {
 <script type="text/javascript">
 	$(document).ready(function() {	
 		var cantidad = parseInt($('input[id=cantPreguntas]').val());
-		$('input[id=numeroPregunta]').val('Pregunta '+ (cantidad+1));	
+		$('input[id=numeroPregunta]').val((cantidad+1));	
 		$('#numPreg').append("<strong># Pregunta : " + (cantidad+1) + "</strong>" ); 
 		
 	});	

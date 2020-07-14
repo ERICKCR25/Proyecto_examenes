@@ -34,4 +34,16 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 		return cantidad;
 	}
 
+
+	@Override
+	public Pregunta agregaPregunta(Pregunta obj) {
+		return preguntaRepositorio.save(obj);
+	}
+
+
+	@Override
+	public void agregaPreguntaEnExamen(Pregunta obj, int idExamen) {
+		preguntaRepositorio.registraEnExamen(obj, idExamen);
+	}
+
 }

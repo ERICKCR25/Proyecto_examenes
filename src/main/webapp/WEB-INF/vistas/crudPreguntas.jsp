@@ -18,7 +18,9 @@
 <title>AÑADIR PREGUNTA</title>
 </head>
 <body>
-
+<jsp:include page="intranetCabecera.jsp" />
+<br>&nbsp;<br>
+<br>&nbsp;<br>
 	<div class="container">
 		<h1>Crud de Pregunta</h1>
 		<div class="col-md-23">
