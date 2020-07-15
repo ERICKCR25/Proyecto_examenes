@@ -30,8 +30,8 @@ public class ExamenController {
 	
 	@Autowired
 	private TipoPreguntaServicio tipoPreguntaServicio;
-	//@Autowired
-	//private RespuestaServicio respuestaServicio;
+	@Autowired
+	private RespuestaServicio respuestaServicio;
 	
 	
 	
@@ -182,6 +182,31 @@ public class ExamenController {
 		List<Examen> list = eservicio.listaExamenesActivos();
 		m.addAttribute("examenes", list);
 		return "crudExamen";
+	}
+	
+	@RequestMapping("/resuelveExamen")
+	public String resolver( Model m) {
+		int id=1;		
+		List<Examen> lista=eservicio.listaExamenesActivos();	
+		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
+		
+		for(Examen e : lista) {
+			if(e.getIdexamen()==1) {				
+				m.addAttribute("Examen",e.getNombre());
+				m.addAttribute("descripcion",e.getDescripcion());
+				m.addAttribute("idExamen",e.getIdexamen());
+				m.addAttribute("tiempo",e.getDuracion());
+				List<Respuesta> resp=respuestaServicio.listaRespuesta(preg.get(0).getIdPregunta());
+				m.addAttribute("respuestas",resp);
+			}
+		}
+		for(Pregunta p: preg) {
+			List<Respuesta> resp=respuestaServicio.listaRespuesta(p.getIdPregunta());
+			m.addAttribute("respuestas",resp);
+		}
+		m.addAttribute("preguntas",preg);
+		m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
+		return "resolverExamen";
 	}
 //	
 //		

@@ -28,7 +28,7 @@
   		</div>
 	</div>
 	<form id="formCabecera" action="cargaExamen"  method="post" >
-		<input type="hidden" id="idex" name="idex" value="${idExamen}" >
+		<input type="hidden" id="idex" name="idex" value="${idExamen}">
 	</form>	
 	<form id="idFormElimina" action="eliminaPregunta"  method="post">
 				<input type="hidden" id="elimina_pregunta" name="elimina_pregunta">
