@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/bootstrapValidator.css" />
 <script src="https://kit.fontawesome.com/2e81971293.js"
 	crossorigin="anonymous"></script>
-<title>Agrega Preguntas a examen</title>
+<title>Resuelve Examen</title>
 </head>
 <body>
 	<jsp:include page="intranetCabecera.jsp" />
@@ -51,19 +51,32 @@
 			<h3 class="panel-title">Pregunta ${x.nPregunta} :</h3>
 			</div>			
 			<div class="panel-body">
+					<div class="text-center">
 					<h3>${x.enunciado}</h3>
-					<c:forEach items="${respuestas}" var="r">
-					<c:if test="${r.pregunta.idPregunta == x.idPregunta}">
-					<div class="input-group">
-						 <div class="row">
-						 	<input type="radio"><p>${r.detalle}</p>
-						 </div>
-						
 					</div>
-					</c:if> 
-				</c:forEach>
-					
-		
+					<div class="container text-justify">
+						<form class="form-inline text-center">
+							
+								<c:forEach items="${respuestas}" var="r">
+									<c:if test="${r.pregunta.idPregunta == x.idPregunta}">
+										<!--  <input type="radio" value="${r.idRespuesta}">
+										 <p>${r.detalle}</p>-->
+										 <!--<span class="input-group-addon"> <input type="radio" value="${r.idRespuesta}" ></span>
+										<input type="text" class="form-control onlyread" value="${r.detalle}" -->
+										<div class="radio">
+										  <label>
+										    <input type="radio" class="form-control"name="optionsRadios" id="optionsRadios1" value="${r.idRespuesta}" >
+										     &nbsp;
+										    ${r.detalle} 
+										    &nbsp; &nbsp; &nbsp;&nbsp;
+										  </label>
+										</div>
+
+									</c:if> 
+								</c:forEach>
+							
+						</form>
+					</div>
 			</div>
 		</div>
 		</c:forEach>
