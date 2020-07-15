@@ -21,15 +21,16 @@ public class LoginController {
 
 	@Autowired
 	private UsuarioServicio servicio;
-	
-	
+
 	@RequestMapping("/verIntranetHome")
-	public String verIntranetHome() { return "intranetHome"; }
-	
+	public String verIntranetHome() {
+		return "intranetHome";
+	}
+
 	@RequestMapping("/login")
 	public String login(Usuario user, HttpSession session, HttpServletRequest request) {
 		Usuario usuario = servicio.login(user);
-		
+
 		if (usuario == null) {
 			request.setAttribute("mensaje", "El usuario no existe");
 			return "login";
@@ -46,11 +47,11 @@ public class LoginController {
 			return "intranetHome";
 		}
 	}
-	
+
 	@RequestMapping("/logout")
-	public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		session.invalidate();
-		
+
 		response.setHeader("Cache-control", "no-cache");
 		response.setHeader("Expires", "0");
 		response.setHeader("Pragma", "no-cache");
@@ -59,7 +60,24 @@ public class LoginController {
 		return "login";
 
 	}
-	
+
 	@RequestMapping("/crudExamen")
-	public String verCrudExamen() {	return "crudExamen"; 	}
+	public String verCrudExamen() {
+		return "crudExamen";
+	}
+
+	@RequestMapping("/crudRespuesta")
+	public String verCrudRespuesta() {
+		return "crudRespuesta";
+	}
+	
+	@RequestMapping("/crudPreguntas2")
+	public String verCrudPreguntas2() {
+		return "crudPreguntas2";
+	}
+	
+	@RequestMapping("/verRespuesta")
+	public String verRespuesta() {
+		return "verRespuesta";
+	}
 }

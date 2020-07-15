@@ -36,43 +36,7 @@
      
     
  
- <ul class="nav navbar-nav">
-    	<li class="dropdown">
-	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	          Consultas<b class="caret"></b>
-	        </a>
-	        <ul class="dropdown-menu">
-	        	<c:forEach var="x" items="${sessionScope.objMenus}">
-	        	<c:if test="${x.tipo == 3}">
-					<li>
-	        			<a href="${x.ruta}">
-	        				${x.nombre}
-	        			</a>
-	        		</li>
-	        	</c:if>	
-	        	</c:forEach>
-	        </ul>
-     	</li>
-     </ul>
-     
-     <ul class="nav navbar-nav">
-    	<li class="dropdown">
-	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	          Reportes<b class="caret"></b>
-	        </a>
-	        <ul class="dropdown-menu">
-	        	<c:forEach var="x" items="${sessionScope.objMenus}">
-	        	<c:if test="${x.tipo == 4}">
-					<li>
-	        			<a href="${x.ruta}">
-	        				${x.nombre}
-	        			</a>
-	        		</li>
-	        	</c:if>	
-	        	</c:forEach>
-	        </ul>
-     	</li>
-     </ul>
+ 
           
      <ul class="nav navbar-nav navbar-right">
        	<li><a href="logout">Salir</a></li>

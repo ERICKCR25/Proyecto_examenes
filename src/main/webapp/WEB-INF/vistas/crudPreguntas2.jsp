@@ -22,7 +22,7 @@
 <jsp:include page="intranetCabecera.jsp" />
 	<div class="container">
 		&nbsp;<br>&nbsp;<br>&nbsp;<br>
-		<h3>Registro Respuesta</h3>
+		<h3>Registro Pregunta</h3>
 	</div>
 
 
@@ -38,34 +38,41 @@
 			</c:if>
 			<c:remove var="MENSAJE" />
 
-			<form action="registraRespuesta" id="id_form" method="post">
+			<form action="registraPregunta" id="id_form" method="post">
 				<input type="hidden" name="metodo" value="registra">
+				
 				<div class="form-group">
-					<label class="control-label" for="id_detalle">Detalle</label> <input
-						class="form-control" type="text" id="id_detalle"
-						style="width: 300px" name="detalle"
-						placeholder="Ingrese detalle" maxlength="500">
+					<label class="control-label" for="id_numero">Numero</label> <input
+						class="form-control" type="text" id="id_numero"
+						style="width: 300px" name="nPregunta"
+						placeholder="Ingrese numero" maxlength="500">
 				</div>
 				
 				<div class="form-group">
-					<label class="control-label" for="id_tipo">Tipo</label> <select
-						id="id_tipo" name="tipo" style="width: 300px"
+					<label class="control-label" for="id_enunciado">Enunciado</label> <input
+						class="form-control" type="text" id="id_enunciado"
+						style="width: 300px" name="enunciado"
+						placeholder="Ingrese enunciado" maxlength="500">
+				</div>
+				
+				
+				<div class="form-group">
+					<label class="control-label" for="id_materia">Materia</label> <select
+						id="id_materia" name="materia.idMateria" style="width: 300px"
 						class='form-control'>
-						<option value="0">Seleccione</option>
-						<option value="1">Correcto</option>
-						<option value="2">Incorrecto</option>
+						<option value=" ">[Seleccione]</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label class="control-label" for="id_pregunta">Pregunta</label> <select
-						id="id_pregunta" name="pregunta.idPregunta" style="width: 300px"
+					<label class="control-label" for="id_tipoPregunta">Tipo de Pregunta</label> <select
+						id="id_tipoPregunta" name="tipoPregunta.idTipoPregunta" style="width: 300px"
 						class='form-control'>
 						<option value=" ">[Seleccione]</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Crea
-						Respuesta</button>
+						Pregunta</button>
 				</div>
 			</form>
 
@@ -74,11 +81,22 @@
 	</div>
 
 	<script type="text/javascript">
-		$.getJSON("listaPregunta", {}, function(data) {
+		$.getJSON("listaMateria", {}, function(data) {
 			$.each(data, function(index, item) {
-				$("#id_pregunta").append(
-						"<option value="+item.idPregunta 
-								+ ">" + item.enunciado 
+				$("#id_materia").append(
+						"<option value="+item.idMateria 
+								+ ">" + item.nombre 
+								+ "</option>");
+			});
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$.getJSON("listaTipoPregunta", {}, function(data) {
+			$.each(data, function(index, item) {
+				$("#id_tipoPregunta").append(
+						"<option value="+item.idTipoPregunta 
+								+ ">" + item.nombre 
 								+ "</option>");
 			});
 		});
@@ -104,14 +122,14 @@
 								validating : 'glyphicon glyphicon-refresh'
 							},
 							fields : {
-								detalle : {
-									selector : '#id_detalle',
+								enunciado : {
+									selector : '#id_enunciado',
 									validators : {
 										notEmpty : {
-											message : 'El detalle es un campo obligatorio'
+											message : 'El enunciado es un campo obligatorio'
 										},
 										stringLength : {
-											message : 'El nombre es de 2 a 500 caracteres',
+											message : 'El enunciado es de 2 a 500 caracteres',
 											min : 2,
 											max : 500
 										}
@@ -130,15 +148,15 @@
 										}
 									}
 								},
-								tipo : {
-									selector : '#id_tipo',
+								numero : {
+									selector : '#id_numero',
 									validators : {
 										notEmpty : {
-											message : 'El Tipo es un campo obligatorio'
+											message : 'El numero es un campo obligatorio'
 										},
 										regexp : {
-											regexp : /^[1-9]$/,
-											message : 'El Tipo es  entero con 1 caracter'
+											regexp : /^[0-9]$/,
+											message : 'El numero es  entero con 1 caracter'
 										}
 									}
 								},

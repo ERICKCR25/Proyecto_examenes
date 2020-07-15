@@ -53,4 +53,13 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 		
 	}
 
+	
+	@Override
+	public List<Pregunta> listaTodos(){
+		return preguntaRepositorio.findAll();
+	}
+	
+	
+	
+	
 }

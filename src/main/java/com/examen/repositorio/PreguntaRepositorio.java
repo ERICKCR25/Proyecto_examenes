@@ -26,4 +26,7 @@ public interface PreguntaRepositorio extends JpaRepository<Pregunta, Integer>{
 //	@Query("insert ExamenHasPregunta ep (ep.idexamen, ep.idpregunta) values(:preg.idPregunta,:ex.idExamen)")
 //	public abstract ExamenHasPregunta registraEnExamen(@Param(value = "preg") Pregunta bean,@Param(value = "ex") Examen ex);
 	
+	
+	
+	
 }

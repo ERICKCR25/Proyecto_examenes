@@ -16,4 +16,5 @@ public interface ExamenRepositorio extends JpaRepository<Examen, Integer>{
 	@Query("Select ex from Examen ex where ex.estado = 'Activo' ")
 	public abstract List<Examen> listaExamenesActivos();
 	
+		
 }
