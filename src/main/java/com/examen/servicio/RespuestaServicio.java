@@ -8,6 +8,7 @@ public interface RespuestaServicio {
 
 	public Respuesta registraRespuesta(Respuesta obj);
 	public List<Respuesta> listaRespuesta( int idPregunta);
+	public List<Respuesta> listaRespuestas();
 	
 	
 }

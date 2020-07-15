@@ -53,15 +53,15 @@ public class ExamenController {
 	public List<TipoPregunta> cargaTipoPregunta() {		
 		return tipoPreguntaServicio.listaTodo();
 	}
-//	
+	
 //	@ResponseBody
-//	@RequestMapping("/cargaPreguntas")
-//	public List<Pregunta> cargaPreguntas(int id) {	
-//		return preguntaServicio.listaPorExamen(id);
+//	@RequestMapping("/cargaRespuestas")
+//	public List<Respuesta> cargaRespuestas() {	
+//		return respuestaServicio.listaRespuestas();
 //	}
-//	
-//	
-//	
+	
+	
+	
 	@RequestMapping("/agregaPreguntas")
 	public String verExamen(@RequestParam Map<String,String> params,Model m) {
 		int id=Integer.parseInt(params.get("id_agrega"));		
@@ -90,7 +90,7 @@ public class ExamenController {
 		List<Examen> lista=eservicio.listaExamenesActivos();	
 		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
 		for(Examen e : lista) {
-			if(e.getIdexamen()==1) {
+			if(e.getIdexamen()==id) {
 				m.addAttribute("idex",e.getIdexamen());
 				m.addAttribute("Examen",e.getNombre());
 				m.addAttribute("descripcion",e.getDescripcion());
@@ -191,20 +191,16 @@ public class ExamenController {
 		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
 		
 		for(Examen e : lista) {
-			if(e.getIdexamen()==1) {				
+			if(e.getIdexamen()==id) {				
 				m.addAttribute("Examen",e.getNombre());
 				m.addAttribute("descripcion",e.getDescripcion());
 				m.addAttribute("idExamen",e.getIdexamen());
 				m.addAttribute("tiempo",e.getDuracion());
-				List<Respuesta> resp=respuestaServicio.listaRespuesta(preg.get(0).getIdPregunta());
-				m.addAttribute("respuestas",resp);
+			
 			}
-		}
-		for(Pregunta p: preg) {
-			List<Respuesta> resp=respuestaServicio.listaRespuesta(p.getIdPregunta());
-			m.addAttribute("respuestas",resp);
-		}
+		}	
 		m.addAttribute("preguntas",preg);
+		m.addAttribute("respuestas",respuestaServicio.listaRespuestas());
 		m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
 		return "resolverExamen";
 	}

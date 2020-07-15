@@ -53,14 +53,15 @@
 			<div class="panel-body">
 					<h3>${x.enunciado}</h3>
 					<c:forEach items="${respuestas}" var="r">
+					<c:if test="${r.pregunta.idPregunta == x.idPregunta}">
 					<div class="input-group">
 						 <div class="row">
-						 	<input type="radio">
-							<p>${r.detalle}</p>
+						 	<input type="radio"><p>${r.detalle}</p>
 						 </div>
-						 
+						
 					</div>
-					</c:forEach>
+					</c:if> 
+				</c:forEach>
 					
 		
 			</div>

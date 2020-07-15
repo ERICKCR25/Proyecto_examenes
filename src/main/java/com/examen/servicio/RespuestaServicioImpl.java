@@ -26,5 +26,11 @@ public class RespuestaServicioImpl implements RespuestaServicio{
 		return repositorio.listaRespuesta( idPregunta);
 		
 	}
+
+	@Override
+	public List<Respuesta> listaRespuestas() {
+		
+		return repositorio.findAll();
+	}
 	
 }
