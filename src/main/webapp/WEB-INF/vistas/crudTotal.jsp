@@ -48,7 +48,7 @@
 									<strong>Id: </strong><p>${idExamen} </p>
 								</div>
 								<div class="col-md-5 col-sm-12 text-left" id="valorAprobatorioCab" name="valorAprobatorioCab" >
-									<strong>Valor Aprobatorio:</strong><p>${porAprobacion}</p>	
+									<strong>Porcentaje Aprobatorio:</strong><p>${porAprobacion}</p>	
 								</div>
 								<div class="col-md-7 col-sm-12 text-right" id="valorTotalCab" name="valorTotalCab">
 									

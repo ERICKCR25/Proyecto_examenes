@@ -16,112 +16,108 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.examen.servicio.*;
 import com.examen.entidad.*;
 
-
 @Controller
 public class ExamenController {
 
-	
 	@Autowired
 	private ExamenServicio eservicio;
 	@Autowired
 	private MateriaServicio materiaservicio;
 	@Autowired
 	private PreguntaServicio preguntaServicio;
-	
+
 	@Autowired
 	private TipoPreguntaServicio tipoPreguntaServicio;
 	@Autowired
 	private RespuestaServicio respuestaServicio;
-	
-	
-	
+
 	@RequestMapping("/verExamen")
 	public String verPagina(Model m) {
-		
+
 		m.addAttribute("Examenes", eservicio.listaExamenesActivos());
 		return "crudExamen";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/cargaMateria")
-	public List<Materia> cargaMateria() {		
+	public List<Materia> cargaMateria() {
 		return materiaservicio.listaMateria();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/cargaTipoPregunta")
-	public List<TipoPregunta> cargaTipoPregunta() {		
+	public List<TipoPregunta> cargaTipoPregunta() {
 		return tipoPreguntaServicio.listaTodo();
 	}
-	
+
 //	@ResponseBody
 //	@RequestMapping("/cargaRespuestas")
 //	public List<Respuesta> cargaRespuestas() {	
 //		return respuestaServicio.listaRespuestas();
 //	}
-	
-	
-	
+
 	@RequestMapping("/agregaPreguntas")
-	public String verExamen(@RequestParam Map<String,String> params,Model m) {
-		int id=Integer.parseInt(params.get("id_agrega"));		
-		List<Examen> lista=eservicio.listaExamenesActivos();	
-		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
-		for(Examen e : lista) {
-			if(e.getIdexamen()==id) {
-				m.addAttribute("idex",e.getIdexamen());
-				m.addAttribute("Examen",e.getNombre());
-				m.addAttribute("descripcion",e.getDescripcion());
-				m.addAttribute("idExamen",e.getIdexamen());
-				m.addAttribute("porAprobacion",e.getPorAprobacion());
-				m.addAttribute("valorTotal",e.getValorTotal());
+	public String verExamen(@RequestParam Map<String, String> params, Model m) {
+		int id = Integer.parseInt(params.get("id_agrega"));
+		List<Examen> lista = eservicio.listaExamenesActivos();
+		List<Pregunta> preg = preguntaServicio.listaPorExamen(id);
+		for (Examen e : lista) {
+			if (e.getIdexamen() == id) {
+				m.addAttribute("idex", e.getIdexamen());
+				m.addAttribute("Examen", e.getNombre());
+				m.addAttribute("descripcion", e.getDescripcion());
+				m.addAttribute("idExamen", e.getIdexamen());
+				m.addAttribute("porAprobacion", e.getPorAprobacion());
+				m.addAttribute("valorTotal", e.getValorTotal());
 			}
 		}
-		m.addAttribute("preguntas",preg);
-		m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
+		m.addAttribute("preguntas", preg);
+		m.addAttribute("cantPreguntas", preguntaServicio.cantidadPreguntasPorExamen(id));
 		return "crudTotal";
 	}
-	
+
 	@RequestMapping("/agregaPreguntasEnEx")
-	public String registraPreguntas(Model m,Pregunta obj,@RequestParam Map<String,String> params) {
-		int id=Integer.parseInt(params.get("id_ex"));			
+	public String registraPreguntas(Model m, Pregunta obj, @RequestParam Map<String, String> params) {
+		int id = Integer.parseInt(params.get("id_ex"));
 		preguntaServicio.agregaPregunta(obj);
 		preguntaServicio.agregaPreguntaEnExamen(obj, id);
-		List<Examen> lista=eservicio.listaExamenesActivos();	
-		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
-		for(Examen e : lista) {
-			if(e.getIdexamen()==id) {
-				m.addAttribute("idex",e.getIdexamen());
-				m.addAttribute("Examen",e.getNombre());
-				m.addAttribute("descripcion",e.getDescripcion());
-				m.addAttribute("idExamen",e.getIdexamen());
-				m.addAttribute("porAprobacion",e.getPorAprobacion());
-				m.addAttribute("valorTotal",e.getValorTotal());
+		List<Examen> lista = eservicio.listaExamenesActivos();
+		List<Pregunta> preg = preguntaServicio.listaPorExamen(id);
+		for (Examen e : lista) {
+			if (e.getIdexamen() == id) {
+				m.addAttribute("idex", e.getIdexamen());
+				m.addAttribute("Examen", e.getNombre());
+				m.addAttribute("descripcion", e.getDescripcion());
+				m.addAttribute("idExamen", e.getIdexamen());
+				m.addAttribute("porAprobacion", e.getPorAprobacion());
+				m.addAttribute("valorTotal", e.getValorTotal());
 			}
 		}
-		m.addAttribute("preguntas",preg);
-		m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
+		m.addAttribute("preguntas", preg);
+		m.addAttribute("cantPreguntas", preguntaServicio.cantidadPreguntasPorExamen(id));
 		return "crudTotal";
 	}
+
 //	
 	@RequestMapping("/eliminaPregunta")
-	public String eliminaPregunta(@RequestParam Map<String,String> params, Model m) {			
-		preguntaServicio.eliminaPregunta(Integer.parseInt(params.get("elimina_pregunta")));	
-		int id=Integer.parseInt(params.get("id_ex"));	
-		List<Examen> lista=eservicio.listaExamenesActivos();	
-		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
-		for(Examen e : lista) {
-			if(e.getIdexamen()==id) {
-				m.addAttribute("Examen",e.getNombre());
-				m.addAttribute("descripcion",e.getDescripcion());
-				m.addAttribute("idExamen",e.getIdexamen());
-				m.addAttribute("porAprobacion",e.getPorAprobacion());
-				m.addAttribute("valorTotal",e.getValorTotal());
+	public String eliminaPregunta(@RequestParam Map<String, String> params, Model m) {
+		preguntaServicio.eliminaPregunta(Integer.parseInt(params.get("elimina_pregunta")));
+		int id = Integer.parseInt(params.get("id_ex"));
+		List<Examen> lista = eservicio.listaExamenesActivos();
+		List<Pregunta> preg = preguntaServicio.listaPorExamen(id);
+		for (Examen e : lista) {
+			if (e.getIdexamen() == id) {
+				m.addAttribute("Examen", e.getNombre());
+				m.addAttribute("descripcion", e.getDescripcion());
+				m.addAttribute("idExamen", e.getIdexamen());
+				m.addAttribute("porAprobacion", e.getPorAprobacion());
+				m.addAttribute("valorTotal", e.getValorTotal());
 			}
 		}
-		m.addAttribute("preguntas",preg);
+		m.addAttribute("preguntas", preg);
 		return "crudTotal";
 	}
+
 //	@RequestMapping("/actualizaPregunta")
 //	public String actualizaPregunta( @RequestParam Map<String,String> params,Model m,Pregunta obj) {			
 //		preguntaServicio.insertaActualizaPregunta(obj);	
@@ -144,22 +140,28 @@ public class ExamenController {
 //	}
 //	
 	@RequestMapping("/registraExamen")
-	public String agregaExamen( Model m,Examen obj) {			
-		eservicio.registraExamen(obj);	
+	public String agregaExamen(Model m, Examen obj) {
+		eservicio.registraExamen(obj);
 		List<Examen> list = eservicio.listaExamenesActivos();
 		m.addAttribute("examenes", list);
 		return "crudExamen";
 	}
-//	
-//	@RequestMapping("/actualizaExamen")
-//	public String actualizaExamen( Model m,Examen obj) {			
-//		eservicio.actualizaExamen(obj);	
-//		List<Examen> list = eservicio.listaExamenN("");
-//		m.addAttribute("examenes", list);
-//		return "crudExamen";	
-//	}	
-//	
-//	
+
+	@RequestMapping("/actualizaExamen")
+	public String actualizaExamen( @RequestParam Map<String,String> params, Model m) {			
+		eservicio.actualiza(params.get("nombre"),params.get("descripcion"),params.get("claves"),Integer.parseInt(params.get("numPreguntas"))
+				,Integer.parseInt(params.get("valorAprobatorio"))
+						,Integer.parseInt(params.get("porAprobacion"))
+								,Integer.parseInt(params.get("valorTotal"))
+										,Integer.parseInt(params.get("duracion"))
+												,(params.get("estado"))
+														,Integer.parseInt(params.get("idexamen")));
+													
+		List<Examen> list = eservicio.listaExamenesActivos();
+		m.addAttribute("examenes", list);
+		return "crudExamen";	
+	}
+
 //	@RequestMapping("/eliminaExamen")
 //	public String eliminaExamen(@RequestParam Map<String,String> params, Model m) {			
 //		eservicio.eliminaExamen(Integer.parseInt(params.get("id")));	
@@ -178,30 +180,30 @@ public class ExamenController {
 //	}
 //	
 	@RequestMapping("/listaExamen")
-	public String listaExamen( Model m) {
+	public String listaExamen(Model m) {
 		List<Examen> list = eservicio.listaExamenesActivos();
 		m.addAttribute("examenes", list);
 		return "crudExamen";
 	}
-	
+
 	@RequestMapping("/resuelveExamen")
-	public String resolver( Model m) {
-		int id=1;		
-		List<Examen> lista=eservicio.listaExamenesActivos();	
-		List<Pregunta> preg=preguntaServicio.listaPorExamen(id);
-		
-		for(Examen e : lista) {
-			if(e.getIdexamen()==id) {				
-				m.addAttribute("Examen",e.getNombre());
-				m.addAttribute("descripcion",e.getDescripcion());
-				m.addAttribute("idExamen",e.getIdexamen());
-				m.addAttribute("tiempo",e.getDuracion());
-			
+	public String resolver(Model m) {
+		int id = 1;
+		List<Examen> lista = eservicio.listaExamenesActivos();
+		List<Pregunta> preg = preguntaServicio.listaPorExamen(id);
+
+		for (Examen e : lista) {
+			if (e.getIdexamen() == id) {
+				m.addAttribute("Examen", e.getNombre());
+				m.addAttribute("descripcion", e.getDescripcion());
+				m.addAttribute("idExamen", e.getIdexamen());
+				m.addAttribute("tiempo", e.getDuracion());
+
 			}
-		}	
-		m.addAttribute("preguntas",preg);
-		m.addAttribute("respuestas",respuestaServicio.listaRespuestas());
-		m.addAttribute("cantPreguntas",preguntaServicio.cantidadPreguntasPorExamen(id));
+		}
+		m.addAttribute("preguntas", preg);
+		m.addAttribute("respuestas", respuestaServicio.listaRespuestas());
+		m.addAttribute("cantPreguntas", preguntaServicio.cantidadPreguntasPorExamen(id));
 		return "resolverExamen";
 	}
 //	
@@ -213,5 +215,5 @@ public class ExamenController {
 //		return "crudExamen";
 //	}
 //	
-	
+
 }

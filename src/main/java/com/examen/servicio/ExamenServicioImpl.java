@@ -36,7 +36,11 @@ public class ExamenServicioImpl implements ExamenServicio {
 	}
 
 	
-
+	@Override
+	public int actualiza(String nombre,String descripcion,String claves,int numPreguntas,int valorAprobatorio
+			,int porAprobacion,int valorTotal, int duracion, String estado, int idExamen) {	
+		return examenRepositorio.actualiza(nombre, descripcion,claves, numPreguntas, valorAprobatorio, porAprobacion, valorTotal, duracion, estado, idExamen);
+	}
 	
 
 	

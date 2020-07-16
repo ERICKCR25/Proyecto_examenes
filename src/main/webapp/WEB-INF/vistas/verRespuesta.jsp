@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <jsp:include page="intranetValida.jsp" />
 <!DOCTYPE html>
 <html lang="esS" >
