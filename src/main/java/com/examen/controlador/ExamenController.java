@@ -188,7 +188,7 @@ public class ExamenController {
 
 	@RequestMapping("/resuelveExamen")
 	public String resolver(Model m) {
-		int id = 1;
+		int id = 9;
 		List<Examen> lista = eservicio.listaExamenesActivos();
 		List<Pregunta> preg = preguntaServicio.listaPorExamen(id);
 
